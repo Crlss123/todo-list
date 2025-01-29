@@ -1,9 +1,11 @@
 class Project {
   #tasks = [];
   #name;
+  #id;
 
   constructor(name) {
-    this.name = name;
+    this.#name = name;
+    this.#id = Date.now();
   }
 
   getName() {
@@ -12,6 +14,10 @@ class Project {
 
   setName(name) {
     this.#name = name;
+  }
+
+  getId(){
+    return this.#id;
   }
 
   addTask(task) {

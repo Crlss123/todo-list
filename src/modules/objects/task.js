@@ -2,32 +2,38 @@ import { compareAsc, format } from "date-fns";
 
 format(new Date(2014, 1, 11), "yyyy-MM-dd");
 
-class Task{
+class Task {
   #title;
   #description;
   #dueDate;
   #status;
+  #id;
 
-  constructor(title, description, dueDay, dueMonth, dueYear){
+  constructor(title, description, dueDay, dueMonth, dueYear) {
     this.#title = title;
     this.#description = description;
     this.#dueDate = new Date(dueYear, dueMonth - 1, dueDay);
     this.#status = false;
-  };
+    this.#id = Date.now();
+  }
 
-  getTitle(){
+  getTitle() {
     return this.#title;
   }
 
-  getDescription(){
+  getDescription() {
     return this.#description;
   }
 
-  getDate(){
+  getId() {
+    return this.#id;
+  }
+
+  getDate() {
     return this.#dueDate;
   }
 
-  getStatus(){
+  getStatus() {
     return this.#status;
   }
 
@@ -48,4 +54,4 @@ class Task{
   }
 }
 
-export { Task }
+export { Task };
