@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Rubik';
+}
+
+:root {
+  --main-color: #052c54;
+  --header-height: 60px;
+  --main-height: calc(100vh - var(--header-height));
+}
+
+header{
+  display: flex;
+  align-items: center;
+  height: var(--header-height);
+  background-color: beige;
+  color: var(--main-color);
+  font-size: 36px;
+  font-weight: bold;
+  padding-left: 20px;
+
+}
+
+.main-container{
+  display: flex;
+}
+
+nav{
+  display: flex;
+  flex-direction: column;
+  color: white;
+  flex: 1;
+  height: var(--main-height);
+  background-color: var(--main-color);
+}
+
+nav h1{
+  text-align: center;
+  font-size: 32px;
+  margin-top: 10px;
+}
+
+.tasks-container{
+  overflow: scroll;
+  flex: 3;
+  height: var(--main-height);
+}
+
+.tasks-container h1{
+  color: var(--main-color);
+  text-align: center;
+  margin-top: 10px;
+  font-size: 38px;
+}
+
+.project{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  margin-top: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+  height: 40px;
+  border-radius: 20px ;
+}
+
+.project:hover{
+  background-color: white;
+  color: var(--main-color);
+  cursor: pointer;
+}
+
+.project-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px white dashed;
+  margin-top: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+  height: 40px;
+  border-radius: 20px ;
+  background-color: var(--main-color);
+  color: white;
+  font-size: 38px;
+}
+
+.project-btn:hover{
+  background-color: white;
+  color: var(--main-color);
+  cursor: pointer;
+}
+
+.project-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.task{
+  display: flex;
+  align-items: center;
+  height: 80px;
+  border: 3px var(--main-color) solid;
+  border-radius: 10px;
+  margin-top: 20px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.task h2{
+  margin-left: 15px;
+}
+
+.done-btn{
+  height: 20px;
+  width: 20px;
+  border: var(--main-color) 2px solid;
+  border-radius: 100px;
+  background-color: white;
+  margin-left: 20px;
+}
+
+.done-btn:hover{
+  cursor: pointer;
+  background-color: var(--main-color);
+}
+
+.date{
+  margin-left: 900px;
+}
