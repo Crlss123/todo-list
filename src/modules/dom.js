@@ -8,14 +8,16 @@ import {
   updateDueDate,
   updateProjectName,
   updateTaskName,
-  updateTaskDecription,
+  updateTaskDescription,
 } from "./utils.js";
 
 import trash from "../img/delete.svg";
-import { add } from "date-fns";
 
-export function renderProjects() {
+let currentProject = null;
+
+function renderProjects() {
   let projectContainer = document.querySelector(".project-container");
+  projectContainer.innerHTML = "";
   const projectsList = getAllProjects();
 
   for (const project of projectsList) {
@@ -25,7 +27,10 @@ export function renderProjects() {
     projectBtn.textContent = projectName;
     projectCard.appendChild(projectBtn);
     projectCard.className = "project";
-    projectBtn.addEventListener("click", () => renderTasks(project));
+    projectBtn.addEventListener("click", () => {
+      currentProject = project; // Store the current project
+      renderTasks(project);
+    });
 
     let img = document.createElement("img");
     img.src = trash;
@@ -39,7 +44,6 @@ export function renderProjects() {
 }
 
 function renderTasks(project) {
-  console.log("click");
   let taskContainer = document.querySelector(".tasks-container");
   taskContainer.innerHTML = "";
   let header = document.createElement("h1");
@@ -50,6 +54,9 @@ function renderTasks(project) {
   addTaskBtn.textContent = "Add Task";
   addTaskBtn.className = "add-task";
   taskContainer.appendChild(addTaskBtn);
+
+  // Only call addTaskDialog once when the page is loaded
+  addTaskDialog();
 
   const taskList = project.getTasks();
 
@@ -63,9 +70,6 @@ function renderTasks(project) {
 
     let taskName = task.getName();
     let taskDueDate = task.getDate();
-    let taskDay = taskDueDate.getDate();
-    let taskMonth = taskDueDate.getMonth();
-    let taskYear = taskDueDate.getFullYear();
 
     let name = document.createElement("h2");
     name.textContent = taskName;
@@ -73,34 +77,72 @@ function renderTasks(project) {
 
     let dateContainer = document.createElement("div");
     dateContainer.className = "date";
-    let heading = document.createElement("h2");
-    heading.textContent = "Due to ";
-    let daySpan = document.createElement("span");
-    daySpan.textContent = taskDay;
-    let dash1 = document.createTextNode(" - ");
-    let monthSpan = document.createElement("span");
-    monthSpan.textContent = taskMonth;
-    let dash2 = document.createTextNode(" - ");
-    let yearSpan = document.createElement("span");
-    yearSpan.textContent = taskYear;
-    heading.appendChild(daySpan);
-    heading.appendChild(dash1);
-    heading.appendChild(monthSpan);
-    heading.appendChild(dash2);
-    heading.appendChild(yearSpan);
-    dateContainer.appendChild(heading);
+    let date = document.createElement("h2");
+    date.innerText = taskDueDate;
+    dateContainer.appendChild(date);
+
     taskCard.appendChild(dateContainer);
 
     taskContainer.appendChild(taskCard);
 
     btn.addEventListener("click", () => {
-      console.log(project.getTasks()[0])
       deleteTaskFromProject(task, project);
-      console.log(project.getTasks()[0])
       taskCard.remove();
     });
   }
 }
 
-const addProjectBtn = document.querySelector(".project-btn");
-addProjectBtn.addEventListener("click", () => {});
+function addProjectDialog() {
+  const addProjectBtn = document.querySelector(".project-btn");
+  const projectDialog = document.querySelector(".dialog-project");
+  const projectForm = document.querySelector("#form-project");
+
+  addProjectBtn.addEventListener("click", () => {
+    projectDialog.showModal();
+  });
+
+  projectForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(projectForm);
+    const name = formData.get("project-name").trim();
+    createProject(name);
+    renderProjects();
+    projectDialog.close();
+    projectForm.reset();
+  });
+}
+
+function addTaskDialog() {
+  const taskDialog = document.querySelector(".dialog-task");
+  const taskForm = document.querySelector("#form-task");
+
+  const addTaskBtn = document.querySelector(".add-task");
+  addTaskBtn.addEventListener("click", () => {
+    taskDialog.showModal();
+  });
+
+  // This function is now only responsible for handling the form submission
+  taskForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(taskForm);
+    const name = formData.get("task-name").trim();
+    const description = formData.get("task-description").trim();
+    const dateString = formData.get("task-date");
+
+    if (dateString) {
+      const [year, month, day] = dateString.split("-").map(Number);
+      const task = createTask(name, description, day, month, year);
+      addTaskToProject(task, currentProject);
+      renderTasks(currentProject); // Re-render the tasks with the new one
+    }
+
+    taskDialog.close();
+    taskForm.reset();
+  });
+}
+
+export { renderProjects };
+
+addProjectDialog();

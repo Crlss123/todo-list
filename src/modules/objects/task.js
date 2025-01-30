@@ -5,14 +5,18 @@ format(new Date(2014, 1, 11), "yyyy-MM-dd");
 class Task {
   #name;
   #description;
-  #dueDate;
+  #dueDay;
+  #dueMonth;
+  #dueYear;
   #status;
   #id;
 
   constructor(name, description, dueDay, dueMonth, dueYear) {
     this.#name = name;
     this.#description = description;
-    this.#dueDate = new Date(dueYear, dueMonth - 1, dueDay);
+    this.#dueDay = dueDay;
+    this.#dueMonth = dueMonth;
+    this.#dueYear = dueYear;
     this.#status = false;
     this.#id = Date.now();
   }
@@ -30,7 +34,7 @@ class Task {
   }
 
   getDate() {
-    return this.#dueDate;
+    return `${this.#dueDay} - ${this.#dueMonth} - ${this.#dueYear}`
   }
 
   getStatus() {
@@ -45,8 +49,10 @@ class Task {
     this.#description = newDescription;
   }
 
-  setDate(newDueDate) {
-    this.#dueDate = newDueDate;
+  setDate(dueDay, dueMonth, dueYear) {
+    this.#dueDay = dueDay;
+    this.#dueMonth = dueMonth;
+    this.#dueYear = dueYear;
   }
 
   setStatus() {
