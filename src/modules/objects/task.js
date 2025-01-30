@@ -3,22 +3,22 @@ import { compareAsc, format } from "date-fns";
 format(new Date(2014, 1, 11), "yyyy-MM-dd");
 
 class Task {
-  #title;
+  #name;
   #description;
   #dueDate;
   #status;
   #id;
 
-  constructor(title, description, dueDay, dueMonth, dueYear) {
-    this.#title = title;
+  constructor(name, description, dueDay, dueMonth, dueYear) {
+    this.#name = name;
     this.#description = description;
     this.#dueDate = new Date(dueYear, dueMonth - 1, dueDay);
     this.#status = false;
     this.#id = Date.now();
   }
 
-  getTitle() {
-    return this.#title;
+  getName() {
+    return this.#name;
   }
 
   getDescription() {
@@ -38,7 +38,7 @@ class Task {
   }
 
   setTitle(newTitle) {
-    this.#title = newTitle;
+    this.#name = newTitle;
   }
 
   setDescription(newDescription) {
@@ -49,7 +49,7 @@ class Task {
     this.#dueDate = newDueDate;
   }
 
-  setStatus(newStatus) {
+  setStatus() {
     this.#status = !this.#status;
   }
 }

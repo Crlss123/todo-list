@@ -18,7 +18,7 @@ function deleteProject(project) {
   ALL_PROJECTS.splice(index, 1);
 }
 
-function addTaskToProject(project) {
+function addTaskToProject(task, project) {
   project.addTask(task);
 }
 
@@ -57,6 +57,9 @@ function updateTaskDecription(task, description) {
 function changeTaskStatus(task) {
   task.setStatus();
 }
+
+let a = createTask("Caca", "cacac", 12, 12, 2025);
+addTaskToProject(a, ALL_PROJECTS[0]);
 
 export {
   getAllProjects,

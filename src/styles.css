@@ -59,7 +59,7 @@ nav h1{
 
 .project{
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   font-size: 24px;
   font-weight: bold;
@@ -133,5 +133,31 @@ nav h1{
 }
 
 .date{
-  margin-left: 900px;
+  margin-left: auto;
+}
+
+img{
+  height: 30px;
+}
+
+img:hover{
+  cursor: pointer;
+}
+
+.add-task{
+  display: block;
+  margin: 20px auto 0 auto;
+  margin-top: 20px;
+  padding: 10px;
+  font-size: 14px;
+  color: var(--main-color);
+  background-color: white;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.add-task:hover{
+  cursor: pointer;
+  background-color: var(--main-color);
+  color: white;
 }
