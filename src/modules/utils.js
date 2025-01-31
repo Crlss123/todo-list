@@ -1,7 +1,7 @@
 import { Task } from "./objects/task.js";
 import { Project } from "./objects/project.js";
 
-let DEFAULT_PROJECT = new Project("DEFAULT");
+let DEFAULT_PROJECT = new Project("Not Grouped");
 let ALL_PROJECTS = [DEFAULT_PROJECT];
 
 const getAllProjects = () => ALL_PROJECTS;

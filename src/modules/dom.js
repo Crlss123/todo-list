@@ -143,6 +143,22 @@ function addTaskDialog() {
   });
 }
 
-export { renderProjects };
+function addMockTasks() {
+  let array = [
+    createTask("Limpiar cuarto", "", 15, 1, 2025),
+    createTask("Hacer Tarea", "", 20, 2, 2025),
+    createTask("Recoger la basura", "", 5, 3, 2025),
+    createTask("Sacar la basura", "", 10, 4, 2025),
+    createTask("Ir al gym", "", 25, 5, 2025),
+  ];
+
+  array.forEach((task) => {
+    addTaskToProject(task, getAllProjects()[0]);
+  });
+}
 
 addProjectDialog();
+addMockTasks();
+renderTasks(getAllProjects()[0]);
+
+export { renderProjects, renderTasks };

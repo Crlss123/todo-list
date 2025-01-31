@@ -163,9 +163,42 @@ img:hover{
   color: white;
 }
 
-dialog{
-  position: relative;
+dialog {
+  position: fixed;
   top: 50%;
   left: 50%;
-  
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.dialog-task, .dialog-project {
+  position: relative;
+  width: 350px;
+  height: 250px;
+}
+
+.dialog-task > * {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dialog-project > * {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.submit{
+  display: block;
+  position: relative;
+  left: 35%;
+  margin-top: 10px;
+}
+
+legend{
+  margin-top: 10px;
 }
