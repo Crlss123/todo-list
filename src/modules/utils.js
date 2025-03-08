@@ -45,17 +45,15 @@ const updateDueDate = (year, month, day, task) => {
   task.setDate(day, month, year);
 };
 
-
 function updateTaskName(task, name) {
   task.setTitle(name);
 }
-
 
 function updateTaskDescription(task, description) {
   task.setDescription(description);
 }
 
-let a = createTask("Caca", "cacac", 12, 12, 2025);
+let a = createTask("Sacar al perro", "Sacalo", 12, 12, 2025);
 addTaskToProject(a, ALL_PROJECTS[0]);
 
 export {
